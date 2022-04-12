@@ -1,28 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends 'layout.html' %}
 
-    <title>{{ user.name }}'s watchlist</title>
-</head>
-<body>
-<h2>
-    <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
-    {{ user.name }}'s watchlist
-</h2>
-<p>{{ movies|length }} Titles</p>
+{% block content %}
+    <p>{{ movies|length }} Title</p>
 
-<ul class="movie-list">
-    {% for movie in movies %}
-        <li>{{ movie.title }} - {{ movie.year }}</li>
-    {% endfor%}
-</ul>
-
-<img class="totoro" alt="walking totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
-<footer>
-    <small>&copy; 2022 <a href="http://helloflask.com/tutorial">Hello Flask</a></small>
-</footer>
-</body>
-</html>
+    <ul class="movie-list">
+        {% for movie in movies %}
+            <li>
+                {{ movie.title }} - {{ movie.year }}
+                <span class="float-right">
+                    <a class="imdb" href="https://www.imdb.com/find?q={{ movie.title }}" target="blank" title="Find this movie on IMDb">IMDb</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+    <img class="totoro" alt="Walking Totoro" src="static/images/totoro.gif" title="to~to~ro~">
+{% endblock %}
