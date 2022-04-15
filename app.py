@@ -243,4 +243,4 @@ def forge():
         db.session.add(movie)
 
     db.session.commit()
-    click.echo('Done')
+    click.echo('Done.')
